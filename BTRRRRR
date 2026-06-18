@@ -1,0 +1,153 @@
+<!DOCTYPE html>
+<html lang="ar">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Hacked By BTR</title>
+    <style>
+        body, html {
+            margin: 0; padding: 0; width: 100%; height: 100%;
+            overflow: hidden; background-color: black;
+            font-family: 'Courier New', Courier, monospace;
+        }
+
+        .background-video {
+            position: fixed;
+            top: 0; left: 0;
+            width: 100%; height: 100%;
+            object-fit: cover; 
+            z-index: -1; 
+        }
+
+        .content {
+            position: fixed; top: 0; left: 0; width: 100%; height: 100%;
+            display: flex; flex-direction: column; align-items: center;
+            justify-content: center; text-align: center;
+            z-index: 1; pointer-events: none;
+        }
+
+        .content * { pointer-events: auto; }
+
+        /* صورة المنتصف الثابتة */
+        img {
+            width: 400px; max-width: 85%; border: 2px solid red;
+            box-shadow: 0 0 30px red; margin-bottom: 20px;
+            animation: pulse 2s infinite ease-in-out;
+            background: black;
+        }
+
+        h1 {
+            color: red; font-size: clamp(30px, 8vw, 60px);
+            margin: 10px 0; text-shadow: 0 0 10px red, 0 0 20px red;
+        }
+
+        .hacker-text {
+            color: #00ff00; font-size: clamp(18px, 4vw, 25px);
+            text-shadow: 0 0 10px #00ff00; font-weight: bold;
+        }
+
+        .discord-line {
+            color: #00ff00; font-size: clamp(16px, 3.5vw, 22px);
+            text-shadow: 0 0 10px #00ff00; margin-top: 10px;
+        }
+
+        .discord-line a {
+            color: white; text-decoration: none; font-weight: bold;
+            text-shadow: 0 0 10px white;
+        }
+
+        .info-box {
+            margin-top: 20px;
+            padding: 15px;
+            border: 1px dashed red;
+            background: rgba(0, 0, 0, 0.85);
+            color: #ff3333;
+            font-size: clamp(13px, 2.8vw, 16px);
+            text-shadow: 0 0 5px red;
+            box-shadow: 0 0 15px rgba(255, 0, 0, 0.3);
+            text-align: left;
+            direction: ltr; 
+            min-width: 320px;
+            max-width: 90%;
+        }
+
+        .info-box div {
+            margin-bottom: 6px;
+            white-space: nowrap;
+            overflow: hidden;
+            text-overflow: ellipsis;
+        }
+
+        @keyframes pulse {
+            0% { transform: scale(1); }
+            50% { transform: scale(1.05); }
+            100% { transform: scale(1); }
+        }
+    </style>
+</head>
+<body onclick="playAudio()">
+
+    <audio id="myAudio" loop>
+        <source src="https://files.catbox.moe/93eajn.mp3" type="audio/mpeg">
+    </audio>
+
+    <video autoplay loop muted playsinline class="background-video">
+        <source src="https://files.catbox.moe/zkvwb5.mp4" type="video/mp4">
+    </video>
+
+    <div class="content">
+        <img src="https://i.postimg.cc/t46BDyT3/lalalalalalalalalalalalalalalalalalala.jpg"> 
+
+        <h1>  بعصت سيرفركم وهربت  </h1>
+        <p class="hacker-text">Fucked By BTR</p>
+        <p class="discord-line">
+            GG : <a href="https://discord.gg/p6mENwPHc" target="_blank">https://discord.gg/p6mENwPHc</a>
+        </p>
+
+        <div class="info-box">
+            <div>> USER_IP: <span id="user-ip">Fetching...</span></div>
+            <div>> OPERATING SYSTEM: <span id="user-os">Detecting...</span></div>
+            <div>> BROWSER: <span id="user-browser">Detecting...</span></div>
+            <div>> TIMEZONE: <span id="user-timezone">Detecting...</span></div>
+            <div>> DEVICE LANGUAGE: <span id="user-lang">Detecting...</span></div>
+        </div>
+    </div>
+
+    <script>
+        function playAudio() {
+            var audio = document.getElementById("myAudio");
+            audio.play().catch(function(error) {
+                console.log("التحميل فشل أو المتصفح منع التشغيل التلقائي");
+            });
+        }
+
+        document.getElementById('user-timezone').innerText = Intl.DateTimeFormat().resolvedOptions().timeZone || 'Unknown';
+        document.getElementById('user-lang').innerText = navigator.language || 'Unknown';
+        
+        const ua = navigator.userAgent;
+        let os = "Unknown OS";
+        if (ua.indexOf("Win") != -1) os = "Windows";
+        if (ua.indexOf("Mac") != -1) os = "MacOS";
+        if (ua.indexOf("Linux") != -1) os = "Linux";
+        if (ua.indexOf("Android") != -1) os = "Android";
+        if (ua.indexOf("like Mac") != -1) os = "iOS";
+        document.getElementById('user-os').innerText = os;
+
+        let browser = "Unknown Browser";
+        if (ua.indexOf("Chrome") != -1) browser = "Google Chrome";
+        if (ua.indexOf("Firefox") != -1) browser = "Mozilla Firefox";
+        if (ua.indexOf("Safari") != -1 && ua.indexOf("Chrome") == -1) browser = "Apple Safari";
+        if (ua.indexOf("Edge") != -1) browser = "Microsoft Edge";
+        document.getElementById('user-browser').innerText = browser;
+
+        fetch('https://api.ipify.org?format=json')
+            .then(res => res.json())
+            .then(data => {
+                document.getElementById('user-ip').innerText = data.ip;
+            })
+            .catch(err => {
+                document.getElementById('user-ip').innerText = "192.168.1.104 (Bypassed)";
+            });
+    </script>
+</body>
+</html>
